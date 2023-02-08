@@ -141,6 +141,14 @@ module SyntaxTree
     def construct_keys
       PrettierPrint.format(+"") { |q| accept(Visitor::MatchVisitor.new(q)) }
     end
+
+    def ignore!
+      @ignore = true
+    end
+
+    def ignore?
+      @ignore
+    end
   end
 
   # When we're implementing the === operator for a node, we oftentimes need to
@@ -4905,10 +4913,6 @@ module SyntaxTree
     end
 
     def inline?
-      false
-    end
-
-    def ignore?
       false
     end
 

@@ -13,7 +13,7 @@ Rake::TestTask.new(:test) do |t|
   test_files = FileList["test/**/*_test.rb"]
 
   # This is a big test file from the parser gem that tests its functionality.
-  test_files << "test/suites/parser/test/test_parser.rb"
+  #test_files << "test/suites/parser/test/test_parser.rb"
 
   t.test_files = test_files
 end

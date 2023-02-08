@@ -118,7 +118,7 @@ module SyntaxTree
 
       # If there are comments, then we're going to format them around the node
       # so that they get printed properly.
-      if node.comments.any?
+      if node.comments.any? || (node.is_a?(Node) && node.ignore?)
         trailing = []
         last_leading = nil
 
@@ -137,7 +137,7 @@ module SyntaxTree
         # If the node has a stree-ignore comment right before it, then we're
         # going to just print out the node as it was seen in the source.
         doc =
-          if last_leading&.ignore?
+          if last_leading&.ignore? || (node.is_a?(Node) && node.ignore?)
             range = source[node.location.start_char...node.location.end_char]
             first = true
 

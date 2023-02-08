@@ -19,6 +19,18 @@ module SyntaxTree
       )
     end
 
+    def test_format_with_ignored_nodes
+      source = "1+1"
+      program = SyntaxTree.parse(source)
+      visitor = Visitor::IgnoreVisitor.new
+      visitor.visit(program)
+
+      assert_equal(
+        "1+1",
+        Formatter.format(source, program)
+      )
+    end
+
     def test_stree_ignore
       source = <<~SOURCE
         # stree-ignore
